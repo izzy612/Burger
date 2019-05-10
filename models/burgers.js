@@ -46,14 +46,51 @@ const create = burgerDataObj => {
 const update = (eatenValue, burgerId) => {
   return new Promise((resolve, reject) => {
 
-    eatenValue = (eatenValue === "true")
-      ? true : false;
-    
+    eatenValue = (eatenValue === "true") ?
+      true : false;
+
     connection.query('UPDATE burgers SET eaten = ? WHERE id = ?', [eatenValue, burgerId], function (err, burgerData) {
       if (err) {
         return reject(err);
+      } else if (burgerData.changedRows === 0) {
+        return reject({
+          message: "You got the wrong ID"
+        });
+      } else {
+        return resolve(burgerData);
       }
-
     })
   })
 }
+
+// deleteing a burger... which is impossible in real life
+
+const remove = (burgerId) => {
+  return new Promise((resolve, reject) => {
+    connection.query('DELETE FROM burgers WHERE  id = ?', [burgerId], function (err, burgerData) {
+      if (err) {
+        return reject(err);
+      }
+      else if (burgerData.affectedRows === 0) {
+        return reject({message:"You got the wrong ID"})
+      }
+      else {
+        return resolve(burgerData);
+      }
+      
+    })
+  })
+}
+
+//export modules
+
+module.exports = {
+  findAll,
+  findbyId,
+  create,
+  update,
+  remove
+};
+
+
+  
