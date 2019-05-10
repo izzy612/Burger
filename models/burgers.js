@@ -15,6 +15,8 @@ const findAll = () => {
   });
 };
 
+//find burger by id
+
 const findbyId = burgerId => {
 
   return new Promise((resolve, reject) => {
@@ -28,6 +30,8 @@ const findbyId = burgerId => {
   })
 };
 
+//creating a burger (nomnom)
+
 const create = burgerDataObj => {
   return new Promise((resolve, reject) => {
     connection.query('SELECT * FROM  burgers SET ?', [burgerDataObj], function (err, burgerData) {
@@ -38,3 +42,12 @@ const create = burgerDataObj => {
     });
   });
 }; 
+
+//setting up if the burger is been eaten or nah
+const update = (eatenValue, burgerId) => {
+  return new Promise((resolve, reject) => {
+
+    eatenValue =
+    connection.query()
+  })
+}
