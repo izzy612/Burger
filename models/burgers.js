@@ -8,7 +8,6 @@ const findAll = () => {
       if (err) {
         return reject(err)
       }
-
       return resolve(burgerData);
 
     });
@@ -41,13 +40,20 @@ const create = burgerDataObj => {
       return resolve(burgerData);
     });
   });
-}; 
+};
 
 //setting up if the burger is been eaten or nah
 const update = (eatenValue, burgerId) => {
   return new Promise((resolve, reject) => {
 
-    eatenValue =
-    connection.query()
+    eatenValue = (eatenValue === "true")
+      ? true : false;
+    
+    connection.query('UPDATE burgers SET eaten = ? WHERE id = ?', [eatenValue, burgerId], function (err, burgerData) {
+      if (err) {
+        return reject(err);
+      }
+
+    })
   })
 }
