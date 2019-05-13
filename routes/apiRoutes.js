@@ -35,7 +35,27 @@ module.exports = app => {
       });
   });
 
+  //Update burgers if theyre eaten or no 
+
+  app.put("/api/burgers/:id", function (req, res) {
+    burgers.update(req.body.eaten, req.params.id)
+      .then(burgerData => res.json(burgerData))
+      .catch(err => {
+        console.log(err);
+        res.json(err);
+      });
+  });
+
+  //Deleting a burger
   
+  app.delete("/api/burgers/:id", function (req, res) {
+    burgers.remove(req.params.id)
+      .then(burgerData => res.json(burgerData))
+      .catch(err => {
+        console.log(err);
+        res.json(err);
+      });
+  });
 
 
 
