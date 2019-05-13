@@ -6,7 +6,7 @@ const findAll = () => {
     connection.query('SELECT * FROM burgers', function (err, burgerData) {
 
       if (err) {
-        return reject(err)
+        return reject(err);
       }
       return resolve(burgerData);
 
