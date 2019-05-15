@@ -15,7 +15,7 @@ module.exports = app => {
 
   //Post/create burgers Api
 
-  app.post("/apit/burgers", function (req, res) {
+  app.post("/api/burgers", function (req, res) {
     
     burgers.create(req.body)
       .then(burgerData => res.json(burgerData))

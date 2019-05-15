@@ -3,7 +3,7 @@
   <div class="jumbotron display-center bg-warning">
     <h1 class="text-center">Burger of the Day 👨🏻</h1>
     <hr>
-    <p class="text-center"><b>This is a list of the special burgers of the day featured on the show Bob's Burgers. Bob and Louise create these hirlarious puns. How many burgers would you eat?</b></p>
+    <p class="text-center"><b>This is a list of the special burgers of the day featured on the show Bob's Burgers, Bob and Louise create these hirlarious puns. How many burgers would you eat?</b></p>
   <div class="row">
   <div class="col-12 col-md-3" align="center">
     <form id="burger-form">
@@ -21,28 +21,31 @@
       <h2 class="text-center">Burger of the Day</h2>
       <ul class="list-group">
       {{!-- use handlebars to print cats that aren't eaten --}}
-     
+     {{#each burgerData}}
+     {{#unless eaten}}
 
      
 
       <li class="list-group-item">
-        
+            {{name}}
         <span class="ml-auto">
           <button 
           class="btn btn-dark update-burger"
-          data-id=""
+          data-id="{{id}}"
           data-eaten="true">
           Eat Burger 🍔
           </button>
           {{!-- delete burger --}}
           <button
           class="btn btn-warning delete-burger"
-          data-id=""
+          data-id="{{id}}"
           >
           Delete Burger 🙅🏻‍
           </button>
         </span>
       </li>
+      {{/unless}}
+      {{/each}}
 
 
       </ul>
@@ -52,13 +55,23 @@
               {{!-- inner right --}}
 
         <div class="col-12 col-md-6">
-          <h2>Burgers Eaten</h2>
+          <h2 class="text-center">Burgers Eaten</h2>
             <ul class="list-group">
              {{!-- use handlebars to print cats that aren't eaten --}}
 
              <li class="list-group-item">
-               
+
+               <span class="ml-auto">
+                 {{!-- delete burger --}}
+                 <button
+                 class="btn btn-warning delete-burger"
+                 data-id="">
+                   Delete Burger 🙅🏻‍
+                 </button>
+               </span>
              </li>
+
+
             </ul>
         </div>
 
@@ -67,3 +80,5 @@
 
   </div>
 </div>
+
+<script src="../public/assets/js/burger.js"></script>
