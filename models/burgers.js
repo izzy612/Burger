@@ -26,14 +26,14 @@ const findbyId = burgerId => {
       return resolve(dbBurgerData);
     });
 
-  })
+  });
 };
 
 //creating a burger (nomnom)
 
 const create = burgerDataObj => {
   return new Promise((resolve, reject) => {
-    connection.query('SELECT * FROM  burgers SET ?', [burgerDataObj], function (err, dbBurgerData) {
+    connection.query('INSERT INTO burgers SET ?', [burgerDataObj], function (err, dbBurgerData) {
       if (err) {
         return reject(err);
       }

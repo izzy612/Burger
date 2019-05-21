@@ -1,20 +1,23 @@
 $(document).ready(function () {
   
-  $("#burger-form").on("submit", function (e) {
+  $(".submit-btn").on("click", function (e) {
     
     e.preventDefault();
 
+    let input = $("#name-input").val().trim()
+    console.log(input)
+
     const burgerData = {
-      name: $("#name-input").val().trim()
+      name: input
     }
 
-    $ajax({
+    $.ajax({
       url: "/api/burgers",
       method: "POST",
       data: burgerData
     })
       .then(function () {
-        location.reload();
+        location.reload()
       })
       .catch(err => console.log(err));
 
@@ -23,28 +26,32 @@ $(document).ready(function () {
   $(".update-burger").on("click", function () {
     
     const burgerId = $(this).attr("data-id");
-    const eaten = $(this).attr("data-eaten")
+    const eaten = $(this).attr("data-eaten");
+    console.log(burgerId);
 
-    $ajax({
-      url: "/api/burgers" + burgerId,
+    $.ajax({
+      url: "/api/burgers/" + burgerId,
       method: "PUT",
       data: {
         eaten: eaten
       }
     })
-      .then(() => location.reaload())
+      .then(() => location.reload())
       .catch(err => console.log(err));
   });
   $(".delete-burger").on("click", function () {
     
+    
     const burgerId = $(this).attr("data-id");
+    console.log(burgerId)
 
-    $ajax({
-      url: "/api/burgers/" + burgerId,
+    $.ajax({
+      url: `/api/burgers/${burgerId}`,
       method: "DELETE",
     })
-      .then(() => location.reaload())
+      .then(() => location.reload())
       .catch(err => console.log(err));
+    
   });
 
 });
