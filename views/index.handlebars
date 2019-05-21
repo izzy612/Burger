@@ -2,9 +2,14 @@
 <div class="container">
   <div class="jumbotron display-center bg-warning">
     <h1 class="text-center">Burger of the Day 👨🏻</h1>
+    <div class="row justify-content-md-center">
+    <div class="col-md-3">
+    <img src="https://cdn.jwplayer.com/thumbs/XgMg5D68-720.jpg" width="200" height="150" alt="burger of the day">
+  </div>
+  </div>
     <hr>
     <p class="text-center"><b>This is a list of the special burgers of the day featured on the show Bob's Burgers, Bob and Louise create these hirlarious puns. How many burgers would you eat?</b></p>
-  <div class="row">
+  <div class="row justify-content-md-center">
   <div class="col-12 col-md-3" align="center">
     <form id="burger-form">
       <input class="form-control" id="name-input" placeholder="Burger of the Day"/>
@@ -14,6 +19,7 @@
   </div>
   </div>
 </div>
+
 
 <div class="container">
   <div class="row">
@@ -26,9 +32,10 @@
 
      
 
-      <li class="list-group-item">
-            {{name}}
+      <li class="list-group-item text-center">
+           <b>{{name}}</b>
         <span class="ml-auto">
+          <div class="row my-3 justify-content-md-center">
           <button 
           class="btn btn-dark update-burger"
           data-id="{{id}}"
@@ -42,6 +49,7 @@
           >
           Delete Burger 🙅🏻‍
           </button>
+          </div>
         </span>
       </li>
       {{/unless}}
@@ -58,18 +66,23 @@
           <h2 class="text-center">Burgers Eaten</h2>
             <ul class="list-group">
              {{!-- use handlebars to print cats that aren't eaten --}}
-
+              {{#each burgerData}}
+              {{#if eaten}}
              <li class="list-group-item">
-
+                {{name}}
                <span class="ml-auto">
                  {{!-- delete burger --}}
+                 <div class="row">
                  <button
                  class="btn btn-warning delete-burger"
-                 data-id="">
+                 data-id="{{id}}">
                    Delete Burger 🙅🏻‍
                  </button>
+                 </div>
                </span>
              </li>
+             {{/if}}
+             {{/each}}
 
 
             </ul>

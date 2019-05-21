@@ -4,14 +4,14 @@ $(document).ready(function () {
     
     e.preventDefault();
 
-    const burgerDataJs = {
-      name: $("name-input").val().trim()
+    const burgerData = {
+      name: $("#name-input").val().trim()
     }
 
     $ajax({
       url: "/api/burgers",
       method: "POST",
-      data: burgerDataJs
+      data: burgerData
     })
       .then(function () {
         location.reload();
@@ -40,7 +40,7 @@ $(document).ready(function () {
     const burgerId = $(this).attr("data-id");
 
     $ajax({
-      url: "api/burgers" + burgerId,
+      url: "/api/burgers/" + burgerId,
       method: "DELETE",
     })
       .then(() => location.reaload())

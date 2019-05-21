@@ -6,7 +6,7 @@ module.exports = app => {
 
   app.get("/api/burgers", function (req, res) {
     burgers.findAll()
-      .then(burgerData => res.json(burgerData))
+      .then(dbBurgerData => res.json(dbBurgerData))
       .catch(err => {
         console.log(err);
         res.json(err);
@@ -18,7 +18,7 @@ module.exports = app => {
   app.post("/api/burgers", function (req, res) {
     
     burgers.create(req.body)
-      .then(burgerData => res.json(burgerData))
+      .then(dbBurgerData => res.json(dbBurgerData))
       .catch(err => {
         console.log(err);
         res.json(err);
@@ -28,7 +28,7 @@ module.exports = app => {
   //Get burger by its id 
   app.get("/api/burgers/:id", function (req, res) {
     burgers.findbyId(req.params.id)
-      .then(burgerData => res.json(burgerData))
+      .then(dbBurgerData => res.json(dbBurgerData))
       .catch(err => {
         console.log(err);
         res.json(err);
@@ -39,7 +39,7 @@ module.exports = app => {
 
   app.put("/api/burgers/:id", function (req, res) {
     burgers.update(req.body.eaten, req.params.id)
-      .then(burgerData => res.json(burgerData))
+      .then(dbBurgerData => res.json(dbBurgerData))
       .catch(err => {
         console.log(err);
         res.json(err);
@@ -50,7 +50,7 @@ module.exports = app => {
   
   app.delete("/api/burgers/:id", function (req, res) {
     burgers.remove(req.params.id)
-      .then(burgerData => res.json(burgerData))
+      .then(dbBurgerData => res.json(dbBurgerData))
       .catch(err => {
         console.log(err);
         res.json(err);
